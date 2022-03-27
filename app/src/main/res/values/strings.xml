@@ -6,4 +6,8 @@
     <string name="settings">Settings</string>
     <string name="Start">Start Game</string>
     <string name="Settings">Settings</string>
+    <string name="BackButton">Back</string>
+    <string name="fun">fun</string>
+    <string name="funner">funner</string>
+    <string name="funniest">funniest</string>
 </resources>
