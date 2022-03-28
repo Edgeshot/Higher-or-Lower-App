@@ -10,4 +10,11 @@
     <string name="fun">fun</string>
     <string name="funner">funner</string>
     <string name="funniest">funniest</string>
+    <string name="Higher">Higher</string>
+    <string name="Lower">Lower</string>
+    <string name="EndGame">End Game</string>
+    <string name="EndGameText">Your Guessed Wrong!</string>
+    <string name="YourScore">"Your Score: "</string>
+    <string name="userscore">Your Score:</string>
+    <string name="playagain">Play Again</string>
 </resources>

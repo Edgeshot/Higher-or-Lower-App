@@ -1,60 +1,48 @@
 package com.wnadeem.project2.ui.main
 
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.findNavController
 import com.wnadeem.project2.R
+import androidx.appcompat.app.AppCompatActivity
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [TitleFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TitleFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+
+    private lateinit var viewModel: MainViewModel
+    private lateinit var ToConfigBtn: Button
+    private lateinit var ToSettingsBtn: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_title, container, false)
+    ): View {
+        val view = inflater.inflate(R.layout.fragment_title, container, false)
+        ToConfigBtn = view.findViewById(R.id.ToConfigBtn)
+        ToSettingsBtn = view.findViewById(R.id.ToSettingsBtn)
+
+        ToConfigBtn.setOnClickListener{
+            view.findNavController().navigate(R.id.action_titleFragment_to_mainFragment)
+        }
+        ToSettingsBtn.setOnClickListener{
+            view.findNavController().navigate(R.id.action_titleFragment_to_settingsFragment)
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TitleFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TitleFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //   arguments?.let { args ->
+        //       val safeArgs = MainFragmentArgs.fromBundle(args)
+        //       val answers = safeArgs.toolname
+        //       tooltext.text = answers}
     }
+
 }

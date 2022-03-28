@@ -25,6 +25,7 @@ class MainFragment : Fragment() {
     private lateinit var recycler: RecyclerView
     private lateinit var definitionTextView: TextView
     private lateinit var cardView: CardView
+    private lateinit var StartGameBtn: Button
 
 
 
@@ -39,6 +40,11 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.main_fragment, container, false)
+        StartGameBtn = view.findViewById(R.id.StartGameBtn)
+
+        StartGameBtn.setOnClickListener{
+            view.findNavController().navigate(R.id.action_mainFragment_to_gameFragment)
+        }
 
 
 
@@ -83,7 +89,7 @@ class MainFragment : Fragment() {
         override fun onClick(p0: View?) {
             //definitionTextView.text =  "Color ID = "+ phrase.colorId.toString() + "\n" + "Color Name = " +phrase.name + "\n" +"ColorHex = " + phrase.hexString.toString()
             cardView.setOnClickListener{ view ->
-                view.findNavController().navigate(R.id.action_mainFragment_to_settingsFragment)
+                //view.findNavController().navigate(R.id.action_mainFragment_to_settingsFragment)
             }
 
 
