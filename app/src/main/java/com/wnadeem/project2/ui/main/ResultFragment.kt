@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.wnadeem.project2.R
@@ -14,6 +15,7 @@ import com.wnadeem.project2.R
 class ResultFragment : Fragment() {
     private lateinit var UserScore: TextView
     private lateinit var PlayAgainBtn: Button
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     private val args by navArgs<ResultFragmentArgs>()
 
@@ -30,6 +32,27 @@ class ResultFragment : Fragment() {
         PlayAgainBtn.setOnClickListener{
             view.findNavController().navigate(R.id.action_resultFragment_to_titleFragment)
         }
+        sharedViewModel.textColor.observe(viewLifecycleOwner) {
+            when (it) {
+        "black" -> {
+            UserScore.setTextColor(resources.getColor(R.color.black))
+            PlayAgainBtn.setTextColor(resources.getColor(R.color.black))
+
+
+        }
+        "white" -> {
+            UserScore.setTextColor(resources.getColor(R.color.white))
+            PlayAgainBtn.setTextColor(resources.getColor(R.color.white))
+
+        }
+        "red" -> {
+            UserScore.setTextColor(resources.getColor(R.color.red))
+            PlayAgainBtn.setTextColor(resources.getColor(R.color.red))
+
+        }
+
+    }
+}
 
     return view
     }

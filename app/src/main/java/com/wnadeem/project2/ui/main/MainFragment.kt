@@ -13,9 +13,11 @@ import androidx.navigation.findNavController
 import com.wnadeem.project2.R
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wnadeem.project2.model.Phrase
@@ -25,8 +27,9 @@ class MainFragment : Fragment() {
     private lateinit var recycler: RecyclerView
     private lateinit var definitionTextView: TextView
     private lateinit var cardView: CardView
-    private lateinit var StartGameBtn: Button
 
+    private lateinit var gameinfo: TextView
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
 
     companion object {
@@ -40,11 +43,32 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.main_fragment, container, false)
-        StartGameBtn = view.findViewById(R.id.StartGameBtn)
 
-        StartGameBtn.setOnClickListener{
-            view.findNavController().navigate(R.id.action_mainFragment_to_gameFragment)
+        gameinfo = view.findViewById(R.id.gameinfo)
+
+
+        gameinfo.text = sharedViewModel.gameinfo.value.toString()
+        sharedViewModel.textColor.observe(viewLifecycleOwner) {
+            when (it) {
+                "black" -> {
+                    gameinfo.setTextColor(resources.getColor(R.color.black))
+
+
+                }
+                "white" -> {
+                    gameinfo.setTextColor(resources.getColor(R.color.white))
+
+
+                }
+                "red" -> {
+                    gameinfo.setTextColor(resources.getColor(R.color.red))
+
+
+                }
+
+            }
         }
+
 
 
 
@@ -57,7 +81,7 @@ class MainFragment : Fragment() {
 
 
 
-        viewModel.vocabulary.observe(viewLifecycleOwner){
+        viewModel.vocabulary.observe(viewLifecycleOwner) {
             recycler.adapter = ColorAdapter(it)
         }
 
@@ -70,16 +94,14 @@ class MainFragment : Fragment() {
         definitionTextView.text = ""
 
 
-
     }
 
-    private inner class ColorViewHolder(view:View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+    private inner class ColorViewHolder(view: View) : RecyclerView.ViewHolder(view),
+        View.OnClickListener {
         private lateinit var phrase: Phrase
         private var wordTextView: TextView = itemView.findViewById(R.id.term_textView)
         private var cardView: CardView = itemView.findViewById(R.id.CardView)
         var navController: NavController? = null
-
-
 
 
         init {
@@ -87,43 +109,55 @@ class MainFragment : Fragment() {
         }
 
         override fun onClick(p0: View?) {
-            //definitionTextView.text =  "Color ID = "+ phrase.colorId.toString() + "\n" + "Color Name = " +phrase.name + "\n" +"ColorHex = " + phrase.hexString.toString()
-            cardView.setOnClickListener{ view ->
-                //view.findNavController().navigate(R.id.action_mainFragment_to_settingsFragment)
-            }
+            when (phrase.name) {
+                "Noob" -> sharedViewModel.updateLevel("Noob")
+                "Easy" -> sharedViewModel.updateLevel("Easy")
+                "Medium" -> sharedViewModel.updateLevel("Medium")
+                "Hard" -> sharedViewModel.updateLevel("Hard")
+                "Woah" -> sharedViewModel.updateLevel("Woah")
 
+            }
+            //definitionTextView.text =  "Color ID = "+ phrase.colorId.toString() + "\n" + "Color Name = " +phrase.name + "\n" +"ColorHex = " + phrase.hexString.toString()
+
+            findNavController().navigate(R.id.action_mainFragment_to_gameFragment)
 
 
         }
+
         fun bind(phrase: Phrase) {
             this.phrase = phrase
 
             wordTextView.text = phrase.name
-           // cardView.setCardBackgroundColor()
+//            sharedViewModel.textColor.observe(viewLifecycleOwner) {
+//                when (sharedViewModel.textColor.value) {
+//                    "black" -> wordTextView.setTextColor(resources.getColor(R.color.black))
+//                    "white" -> wordTextView.setTextColor(resources.getColor(R.color.white))
+//                    "red" -> wordTextView.setTextColor(resources.getColor(R.color.red))
+//                }
+
+                // cardView.setCardBackgroundColor()
+            }
+
         }
+
+        private inner class ColorAdapter(private val list: List<Phrase>) :
+            RecyclerView.Adapter<ColorViewHolder>() {
+
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorViewHolder {
+                val view = layoutInflater.inflate(R.layout.recycler_item, parent, false)
+                return ColorViewHolder(view)
+
+            }
+
+            override fun getItemCount() = list.size
+
+            override fun onBindViewHolder(holder: ColorViewHolder, position: Int) {
+                holder.bind(list[position])
+                lateinit var phrase: Phrase
+
+
+            }
+        }
+
 
     }
-
-    private inner class ColorAdapter(private val list: List<Phrase>) : RecyclerView.Adapter<ColorViewHolder>() {
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorViewHolder {
-            val view = layoutInflater.inflate(R.layout.recycler_item, parent, false)
-            return ColorViewHolder(view)
-
-        }
-
-        override fun getItemCount() = list.size
-
-        override fun onBindViewHolder(holder: ColorViewHolder, position: Int) {
-            holder.bind(list[position])
-            lateinit var phrase: Phrase
-
-
-
-
-
-        }
-    }
-
-
-}

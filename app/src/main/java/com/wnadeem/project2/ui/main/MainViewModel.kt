@@ -17,7 +17,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     var vocabulary: LiveData<List<Phrase>> = _vocabulary
 
     init {
-        val jsonString = app.assets.open("data.json").bufferedReader().use { it.readText() }
+        val jsonString = app.assets.open("data1.json").bufferedReader().use { it.readText() }
         wordList = WordList(jsonString)
 
         _vocabulary.value = wordList.terms

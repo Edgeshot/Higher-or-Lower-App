@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ECDB49"
+    android:background="#228F76"
     tools:context=".ui.main.MainFragment">
 
     <androidx.constraintlayout.widget.Guideline
@@ -43,14 +43,29 @@
         app:layout_constraintTop_toBottomOf="@+id/recyclerView"
         tools:text="Test" />
 
-    <Button
-        android:id="@+id/StartGameBtn"
+    <TextView
+        android:id="@+id/gameinfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Start"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/definition_textView"
-        app:layout_constraintStart_toStartOf="@+id/definition_textView"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.87" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="55dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="364dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

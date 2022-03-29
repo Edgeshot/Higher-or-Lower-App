@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Projet 2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="GameName">Plus haute ou Plus bas</string>
+    <string name="settings">Réglages</string>
+    <string name="Start">Démarrer Jeu</string>
+    <string name="Settings">Réglages</string>
+    <string name="BackButton">arrière</string>
+    <string name="black">noire</string>
+    <string name="white">blanche</string>
+    <string name="red">rouge</string>
+    <string name="Higher">Plus haute</string>
+    <string name="Lower">Plus bas</string>
+    <string name="EndGame">finir Jeu</string>
+    <string name="EndGameText">toi deviné tort!</string>
+    <string name="YourScore">"ton But: "</string>
+    <string name="userscore">ton But:</string>
+    <string name="playagain">jouer de nouveau</string>
+    <string name="set">essayer quelque éléments différemment</string>
+</resources>

@@ -14,7 +14,8 @@
             android:id="@+id/action_mainFragment_to_gameFragment"
             app:destination="@id/gameFragment"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/titleFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -39,7 +40,8 @@
             android:id="@+id/action_gameFragment_to_resultFragment2"
             app:destination="@id/resultFragment"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/titleFragment" />
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
